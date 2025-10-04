@@ -37,6 +37,7 @@ npm run dev
 ## Dependencias utilizadas
 - express.js
 - dotenv
+- jsonwebtoken
 #### Dependencias de desarrollo
 - nodemon
 
