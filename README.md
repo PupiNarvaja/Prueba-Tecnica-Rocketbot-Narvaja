@@ -21,6 +21,9 @@
     ```env
     NODE_ENV: "development"
     PORT=3000
+
+    USERNAME="admin"
+    PASSWORD="secret"
     ```
 
 ## Iniciar el Proyecto

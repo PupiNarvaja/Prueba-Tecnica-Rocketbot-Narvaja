@@ -1,8 +1,18 @@
+const userModel = require("../models/userModel");
 const AuthenticationError = require("../utils/AuthenticationError");
 
-const login = (req, res, next) => {
-  return next(new AuthenticationError("Invalid credentials."));
-  res.status(200).send("Setting folders and project structure.");
+const login = async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+
+    if (!await userModel.exists(username) || !await userModel.isPasswordValid(username, password)) {
+      return next(new AuthenticationError("Invalid credentials."));
+    }
+  
+    res.status(200).send(`Hi ${username}.`);
+  } catch (error) {
+    next(error);
+  }
 };
 
 module.exports = {
