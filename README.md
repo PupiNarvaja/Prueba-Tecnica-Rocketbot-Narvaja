@@ -22,7 +22,7 @@
     NODE_ENV: "development"
     PORT=3000
 
-    USERNAME="admin"
+    APP_USERNAME="admin"
     PASSWORD="secret"
     ```
 
@@ -39,3 +39,36 @@ npm run dev
 - dotenv
 #### Dependencias de desarrollo
 - nodemon
+
+## Ejemplos (Postman)
+#### POST /login (credenciales correctas)
+- URL: http://localhost:3000/login
+- MÉtodo: POST
+- Headers: 
+    - Content-Type: application/json
+- Body:
+    {
+        "username": "admin",
+        "password": "secret"
+    }
+
+Resultado esperado:
+{
+  "message": "Hi admin."
+}
+
+#### POST /login (credenciales incorrectas)
+- URL: http://localhost:3000/login
+- MÉtodo: POST
+- Headers: 
+    - Content-Type: application/json
+- Body:
+    {
+        "username": "adminn",
+        "password": "secrett"
+    }
+
+Resultado esperado:
+{
+  "message": "Invalid credentials."
+}

@@ -9,7 +9,7 @@ const login = async (req, res, next) => {
       return next(new AuthenticationError("Invalid credentials."));
     }
   
-    res.status(200).send(`Hi ${username}.`);
+    res.status(200).json({ message: `Hi ${username}.` });
   } catch (error) {
     next(error);
   }
