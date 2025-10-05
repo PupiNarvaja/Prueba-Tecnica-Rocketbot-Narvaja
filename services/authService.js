@@ -6,12 +6,7 @@ const generateToken = (user) => {
     expiresIn: JWT_EXPIRES_IN
   };
 
-  try {
-    return jwt.sign(user, JWT_SECRET, options);
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
+  return jwt.sign(user, JWT_SECRET, options);
 };
 
 const verifyToken = (token) => {
