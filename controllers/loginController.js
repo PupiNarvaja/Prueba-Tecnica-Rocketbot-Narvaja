@@ -1,6 +1,7 @@
 const userModel = require("../models/userModel");
 const AuthenticationError = require("../utils/AuthenticationError");
 const authService = require("../services/authService");
+const AppError = require("../utils/AppError");
 
 const login = async (req, res, next) => {
   try {
@@ -15,16 +16,10 @@ const login = async (req, res, next) => {
     const token = authService.generateToken(user);
 
     if (!token) {
-      return next(new AuthenticationError("Login failed."));
+      return next(new AppError);
     }
-
-    const jsonRes = {
-      message: `Hi ${username}.`,
-      user,
-      token
-    };
   
-    res.status(200).json(jsonRes);
+    res.status(200).json({ token });
   } catch (error) {
     next(error);
   }
