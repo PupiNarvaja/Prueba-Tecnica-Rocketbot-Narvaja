@@ -8,7 +8,6 @@ const globalErrorHandler = (err, req, res, next) => {
     message = DEFAULT_MESSAGE;
   };
   
-
   res.status(STATUS).json({ message });
 };
 
