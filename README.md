@@ -24,6 +24,10 @@
 
     APP_USERNAME="admin"
     PASSWORD="secret"
+
+    # JWT
+    JWT_SECRET=RocketBotSaturno
+    JWT_EXPIRES_IN=1h
     ```
 
 ## Iniciar el Proyecto
@@ -34,42 +38,70 @@ Para iniciar el servidor en modo desarrollo (con reinicio automático usando `no
 npm run dev
 ```
 
+Para iniciar el servidor en modo producción:
+
+```bash
+npm start
+```
+
 ## Dependencias utilizadas
-- express.js
-- dotenv
-- jsonwebtoken
+- [express.js](https://www.npmjs.com/package/express)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+
 #### Dependencias de desarrollo
-- nodemon
+- [nodemon](https://www.npmjs.com/package/nodemon)
 
 ## Ejemplos (Postman)
-#### POST /login (credenciales correctas)
-- URL: http://localhost:3000/login
-- MÉtodo: POST
+### POST /login (credenciales correctas)
 - Headers: 
     - Content-Type: application/json
 - Body:
+    ```
     {
         "username": "admin",
         "password": "secret"
     }
+    ```
 
 Resultado esperado:
+```
 {
-  "message": "Hi admin."
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU"
 }
+```
 
-#### POST /login (credenciales incorrectas)
-- URL: http://localhost:3000/login
-- MÉtodo: POST
+> token de ejemplo generado en jwt.io
+
+### POST /login (credenciales incorrectas)
 - Headers: 
     - Content-Type: application/json
 - Body:
+    ```
     {
         "username": "adminn",
         "password": "secrett"
     }
+    ```
 
 Resultado esperado:
+```
 {
   "message": "Invalid credentials."
 }
+```
+
+
+### GET /weather/:city (credenciales correctas)
+- Headers: 
+    - Content-Type: application/json
+    - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
+
+> token de ejemplo generado en jwt.io
+
+Resultado esperado:
+```
+{
+    "city": "Requested city: BuenosAires"
+}
+```
