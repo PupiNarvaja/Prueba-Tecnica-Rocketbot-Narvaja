@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { OPENWEATHER_BASE_URL, OPENWEATHER_API_KEY } = require("../config/config");
-const AppError = require("../utils/AppError");
+const ServiceUnavailableError = require("../utils/ServiceUnavailableError");
+const NotFoundError = require("../utils/NotFoundError");
 
 const getWeatherByCity = async (city) => {
   try {
@@ -8,9 +9,11 @@ const getWeatherByCity = async (city) => {
 
     return response.data;
   } catch (error) {
-    // Create custom errors. (503, 404).
+    if (error.response && error.response.status === 404) {
+      throw new NotFoundError(`City '${city}' not found.`);
+    }
 
-    throw new AppError(503, "External service error.");
+    throw new ServiceUnavailableError();
   }
 }
 

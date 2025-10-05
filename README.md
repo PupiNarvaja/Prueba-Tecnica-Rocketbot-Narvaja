@@ -163,6 +163,44 @@ Resultado esperado:
 Resultado esperado:
 ```
 {
-    "message": "External service error."
+    "message": "City 'BuenosAir' not found."
+}
+```
+
+### GET /weather/:city (city mal escrita)
+- Headers: 
+    - Content-Type: application/json
+    - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
+
+> token de ejemplo generado en jwt.io
+
+Resultado esperado:
+```
+{
+    "message": "City 'BuenosAir' not found."
+}
+```
+
+### Rutas protegidas
+Al utilizar JWT, junto a un middleware, protegemos aquellas rutas que requieran autenticación.
+Asi se ven los mensajes recibidos en distintos casos:
+- Fallo al intentar obtener el token del header:
+```
+{
+    "message": "Access denied. Bearer Token missing or improperly formatted."
+}
+```
+
+- token expirado:
+```
+{
+    "message": "Please, log in again."
+}
+```
+
+- error de jsonwebtoken:
+```
+{
+    "message": "Log in failed."
 }
 ```
