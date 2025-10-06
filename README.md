@@ -97,7 +97,7 @@ Resultado esperado:
 ```
 
 
-### GET /weather/:city (credenciales correctas)
+### GET /weather/city/:city (credenciales correctas)
 - Headers: 
     - Content-Type: application/json
     - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
@@ -153,7 +153,7 @@ Resultado esperado:
 }
 ```
 
-### GET /weather/:city (city mal escrita)
+### GET /weather/city/:city (city mal escrita)
 - Headers: 
     - Content-Type: application/json
     - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
@@ -192,7 +192,7 @@ Asi se ven los mensajes recibidos en distintos casos:
 ```
 
 ### Manejo de endpoints inexistentes
-Para express, las respuestas 404 no son resultados de errores, por lo que recomienda crear un middleware que capture los intentos de acceder a aquellos endpoints inexistentes en nuestra API.
+Para express, las respuestas 404 no son resultados de errores, sino la ausencia de trabajo por hacer, por lo que recomienda crear un middleware que capture los intentos de acceder a aquellos endpoints inexistentes en nuestra API.
 
 La respuesta ante tales situaciones se ven asi:
 ```
