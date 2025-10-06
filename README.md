@@ -26,8 +26,8 @@
 ## Instalación de Dependencias
 1.  Clonar el repositorio:
     ```bash
-    git clone https://github.com/PupiNarvaja/Prueba-Tecnica-Rocketbot-Narvaja
-    cd '.\Prueba-Tecnica-Rocketbot-Narvaja\'
+    git clone https://github.com/PupiNarvaja/Prueba-Tecnica-Rocketbot-Narvaja.git
+    cd Prueba-Tecnica-Rocketbot-Narvaja
     ```
 
 2.  Instalar los módulos necesarios: [(ver paquetes utilizados aquí)](#dependencias-utilizadas)
