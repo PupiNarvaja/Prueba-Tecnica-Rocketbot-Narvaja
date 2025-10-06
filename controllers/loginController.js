@@ -16,7 +16,7 @@ const login = async (req, res, next) => {
     const token = authService.generateToken(user);
 
     if (!token) {
-      return next(new AppError);
+      return next(new AppError("Failed to generate autentication token."));
     }
   
     res.status(200).json({ token });

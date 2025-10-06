@@ -19,11 +19,11 @@ const authMiddleware = (req, res, next) => {
       next();
   } catch (error) {
     if (error instanceof TokenExpiredError) {
-      return next(new AuthenticationError("Please, log in again."))
+      return next(new AuthenticationError("Please, log in again."));
     }
 
     if (error instanceof JsonWebTokenError) {
-      return next(new AuthenticationError("Log in failed."))
+      return next(new AuthenticationError("Log in failed."));
     }
 
     return next(error);
