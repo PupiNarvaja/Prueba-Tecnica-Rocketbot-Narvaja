@@ -190,3 +190,13 @@ Asi se ven los mensajes recibidos en distintos casos:
     "message": "Log in failed."
 }
 ```
+
+### Manejo de endpoints inexistentes
+Para express, las respuestas 404 no son resultados de errores, por lo que recomienda crear un middleware que capture los intentos de acceder a aquellos endpoints inexistentes en nuestra API.
+
+La respuesta ante tales situaciones se ven asi:
+```
+{
+    "message": "Endpoint '/fakeendpoint' not found."
+}
+```
