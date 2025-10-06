@@ -12,9 +12,9 @@ const getAllPosts = async (req, res, next) => {
 
 const createPost = async (req, res, next) => {
   try {
-    const { authorId, content } = req.body;
+    const { userId, body } = req.body;
 
-    const post = await postService.createPost(authorId, content);
+    const post = await postService.createPost(userId, body);
 
     res.status(201).json(post);
   } catch (error) {

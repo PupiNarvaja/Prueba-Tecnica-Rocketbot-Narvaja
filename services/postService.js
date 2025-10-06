@@ -17,9 +17,14 @@ const getAllPosts = async () => {
   }
 };
 
-const createPost = async () => {
+const createPost = async (userId, body) => {
   try {
-    const response = await axios.post(`${JSONPlaceholder_BASE_URL}/posts`);
+    const postInfo = {
+      userId,
+      body
+    };
+
+    const response = await axios.post(`${JSONPlaceholder_BASE_URL}/posts`, postInfo);
 
     return response.data;
   } catch (error) {

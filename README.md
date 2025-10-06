@@ -235,8 +235,8 @@ npm start
 - Body:
     ```
     {
-        "authorId": "1",
-        "content": "Hello world!"
+        "userId": "1",
+        "body": "Hello world!"
     }
     ```
 
@@ -246,6 +246,8 @@ npm start
 #### Resultado esperado:
 ```
 {
+    "userId": "1",
+    "body": "Hello world!",
     "id": 101
 }
 ```
