@@ -1,5 +1,5 @@
 class AppError extends Error {
-  constructor(statusCode, message = "Something went wrong.") {
+  constructor(message = "Something went wrong.", statusCode = 500) {
     super(message);
     this.statusCode = statusCode;
     this.isOperational = true;

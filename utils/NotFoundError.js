@@ -2,7 +2,7 @@ const AppError = require("./AppError");
 
 class NotFoundError extends AppError {
   constructor(message = "Not found.") {
-    super(404, message);
+    super(message, 404);
   }
 }
 
