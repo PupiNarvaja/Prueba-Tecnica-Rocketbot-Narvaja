@@ -12,6 +12,9 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 const OPENWEATHER_BASE_URL = process.env.OPENWEATHER_BASE_URL;
 const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
 
+// JSONPlaceholder
+const JSONPlaceholder_BASE_URL=process.env.JSONPlaceholder_BASE_URL;
+
 module.exports = {
   NODE_ENV,
   PORT,
@@ -21,4 +24,5 @@ module.exports = {
   JWT_EXPIRES_IN,
   OPENWEATHER_BASE_URL,
   OPENWEATHER_API_KEY,
+  JSONPlaceholder_BASE_URL,
 };
