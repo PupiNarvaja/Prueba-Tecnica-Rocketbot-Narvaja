@@ -1,5 +1,23 @@
 # Prueba-Tecnica-Rocketbot-Narvaja
-Ésta es mi propuesta a las consignas otorgadas para la entrevista técnica de Rocketbot.
+Ésta es mi propuesta para la entrevista técnica de Desarrollador Node.js Junior en Rocketbot.
+
+## Tabla de contenidos
+- [Requisitos Técnicos](#requisitos-técnicos)
+- [Instalación de Dependencias](#instalación-de-dependencias)
+- [Iniciar el Proyecto](#iniciar-el-Proyecto)
+- [Dependencias utilizadas](#dependencias-utilizadas)
+- [Ejemplos](#ejemplos)
+    - [POST /login](#post-login)
+    - [GET /weather/current/:city](#get-weathercurrentcity)
+    - [GET /weather/forecast/:city](#get-weatherforecastcity)
+    - [GET /posts](#get-posts)
+    - [POST /posts](#post-posts)
+    - [GET /posts/:userId](#get-postsuserId)
+- [Rutas protegidas](#rutas-protegidas)
+- [Manejo de endpoints inexistentes](#manejo-de-endpoints-inexistentes)
+- [Servicios externos](#servicios-externos)
+- [Cuestiones a considerar](#cuestiones-a-considerar)
+- [Autor](#autor)
 
 ## Requisitos Técnicos
 * Node.js (versión utilizada: 22.20.0 LTS)
@@ -12,27 +30,32 @@
     cd '.\Prueba Técnica Rocketbot - Narvaja\'
     ```
 
-2.  Instalar los módulos necesarios:
+2.  Instalar los módulos necesarios: [(ver paquetes utilizados aquí)](#dependencias-utilizadas)
     ```bash
     npm install
     ```
 
-3.  Crear un archivo `.env` en la raíz del proyecto y agregar (para facilitar su uso, daré información sensible, no sería el caso en un escenario real):
+3.  Crear un archivo `.env` en la raíz del proyecto y agregar:
     ```env
-    NODE_ENV: "development"
+    NODE_ENV=development
     PORT=3000
 
-    APP_USERNAME="admin"
-    PASSWORD="secret"
+    APP_USERNAME=admin
+    PASSWORD=secret
 
     # JWT
-    JWT_SECRET=RocketBotSaturno
+    JWT_SECRET=<TU_SECRETO>
     JWT_EXPIRES_IN=1h
 
     # OpenWeather
     OPENWEATHER_BASE_URL=https://api.openweathermap.org/data/2.5
     OPENWEATHER_API_KEY=<TU_API_KEY>
+
+    # JSONPlaceholder
+    JSONPlaceholder_BASE_URL=https://jsonplaceholder.typicode.com
     ```
+
+> **Importante:** [OpenWeather](https://openweathermap.org/) requiere crearse una cuenta para obtener su API_KEY. En caso de no realizar este paso, no se podrán utilizar sus endpoints.
 
 ## Iniciar el Proyecto
 
@@ -76,7 +99,7 @@ npm start
 }
 ```
 
-> token de ejemplo generado en jwt.io
+> **Nota:** token de ejemplo generado en jwt.io.
 
 #### Casos de error:
 - Username y/o password incorrectas:
@@ -92,7 +115,7 @@ npm start
     - Content-Type: application/json
     - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
 
-> token de ejemplo generado en jwt.io
+> **Nota:** token de ejemplo generado en jwt.io.
 
 #### Resultado esperado:
 ```
@@ -119,7 +142,7 @@ npm start
     - Content-Type: application/json
     - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
 
-> token de ejemplo generado en jwt.io
+> **Nota:** token de ejemplo generado en jwt.io.
 
 #### Resultado esperado:
 ```
@@ -162,7 +185,7 @@ npm start
     - Content-Type: application/json
     - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
 
-> token de ejemplo generado en jwt.io
+> **Nota:** token de ejemplo generado en jwt.io.
 
 #### Resultado esperado:
 ```
@@ -205,7 +228,7 @@ npm start
     }
     ```
 
-> token de ejemplo generado en jwt.io
+> **Nota:** token de ejemplo generado en jwt.io.
 
 
 #### Resultado esperado:
@@ -231,7 +254,7 @@ npm start
     - Content-Type: application/json
     - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
 
-> **Importante:** token de ejemplo generado en jwt.io
+> **Nota:** token de ejemplo generado en jwt.io.
 
 #### Resultado esperado:
 ```
@@ -295,3 +318,15 @@ La respuesta ante tales situaciones se ve algo asi:
     "message": "Endpoint '/fakeendpoint' not found."
 }
 ```
+
+## Servicios externos
+- [OpenWeather](https://openweathermap.org/)
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
+
+## Cuestiones a considerar
+Dicho proyecto fue realizado con la intención de cumplir con los requisitos solicitados, haciendo énfasis en ellos y pasando por alto diversas cuestiones tales como validaciones básicas y medidas de seguridad avanzadas, con el fin de agilizar el analisis sobre los requerimientos en sí.
+
+A su vez, el proyecto busca un equilibrio entre estándares e implementaciones propias, para lograr que sea lo más fácil posible de comprender, al mismo tiempo que contenga una porción de enfoque personal.
+
+## Autor
+[Juan Manuel Narvaja.](https://github.com/PupiNarvaja)
