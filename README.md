@@ -97,49 +97,12 @@ npm start
 #### Resultado esperado:
 ```
 {
-    "coord": {
-        "lon": -58.3772,
-        "lat": -34.6132
-    },
-    "weather": [
-        {
-            "id": 803,
-            "main": "Clouds",
-            "description": "broken clouds",
-            "icon": "04d"
-        }
-    ],
-    "base": "stations",
-    "main": {
-        "temp": 294.16,
-        "feels_like": 294.09,
-        "temp_min": 294,
-        "temp_max": 296.06,
-        "pressure": 1005,
-        "humidity": 68,
-        "sea_level": 1005,
-        "grnd_level": 1004
-    },
-    "visibility": 10000,
-    "wind": {
-        "speed": 4.12,
-        "deg": 0
-    },
-    "clouds": {
-        "all": 75
-    },
-    "dt": 1759687401,
-    "sys": {
-        "type": 1,
-        "id": 8224,
-        "country": "AR",
-        "sunrise": 1759656253,
-        "sunset": 1759701555
-    },
-    "timezone": -10800,
-    "id": 3435910,
-    "name": "Buenos Aires",
-    "cod": 200
+    "city": "Buenos Aires",
+    "country": "AR",
+    "weather": "Clouds",
+    "description": "overcast clouds",
+    "temperature": 285.03,
+    "clouds": 91
 }
 ```
 
@@ -161,26 +124,28 @@ npm start
 #### Resultado esperado:
 ```
 {
-    "cod": "200",
-    "message": 0,
-    "cnt": 40,
-    "list":
-
-    ...
-
-    "city": {
-        "id": 3433955,
-        "name": "Buenos Aires F.D.",
-        "coord": {
-            "lat": -34.6,
-            "lon": -58.45
+    "city": "Córdoba",
+    "country": "AR",
+    "numPeriods": 40,
+    "periods": [
+        {
+            "timestamp": 1759730400,
+            "dateTime": "2025-10-06 06:00:00",
+            "temperature": 284.47,
+            "weather": "Clear",
+            "description": "clear sky"
         },
-        "country": "AR",
-        "population": 0,
-        "timezone": -10800,
-        "sunrise": 1759656271,
-        "sunset": 1759701572
-    }
+
+        ...
+
+        {
+            "timestamp": 1760151600,
+            "dateTime": "2025-10-11 03:00:00",
+            "temperature": 295.68,
+            "weather": "Clouds",
+            "description": "few clouds"
+        }
+    ]
 }
 ```
 
@@ -188,7 +153,7 @@ npm start
 - Ciudad mal escrita o incompleta:
 ```
 {
-    "message": "City 'BuenosAir' not found."
+    "message": "City 'cordob' not found."
 }
 ```
 
