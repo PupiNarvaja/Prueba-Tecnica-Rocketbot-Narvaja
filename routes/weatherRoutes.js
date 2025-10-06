@@ -5,7 +5,10 @@ const authMiddleware = require("../middlewares/authMiddleware");
 // "/weather"
 router.use(authMiddleware);
 
-router.route("/city/:city")
-  .get(weatherController.getWeatherByCity);
+router.route("/current/:city")
+  .get(weatherController.getCurrentWeatherByCity);
+
+router.route("/forecast/:city")
+  .get(weatherController.getWeatherForecastByCity);
 
 module.exports = router;

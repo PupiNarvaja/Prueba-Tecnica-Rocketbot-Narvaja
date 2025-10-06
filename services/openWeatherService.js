@@ -15,8 +15,23 @@ const getWeatherByCity = async (city) => {
 
     throw new ServiceUnavailableError();
   }
-}
+};
+
+const getWeatherForecastByCity = async (city) => {
+  try {
+    const response = await axios.get(`${OPENWEATHER_BASE_URL}/forecast?q=${city}&appid=${OPENWEATHER_API_KEY}`);
+
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      throw new NotFoundError(`City '${city}' not found.`);
+    }
+
+    throw new ServiceUnavailableError();
+  }
+};
 
 module.exports = {
   getWeatherByCity,
+  getWeatherForecastByCity,
 };

@@ -57,8 +57,8 @@ npm start
 #### Dependencias de desarrollo
 - [nodemon](https://www.npmjs.com/package/nodemon)
 
-## Ejemplos (Postman)
-### POST /login (credenciales correctas)
+## Ejemplos
+### POST /login
 - Headers: 
     - Content-Type: application/json
 - Body:
@@ -69,7 +69,7 @@ npm start
     }
     ```
 
-Resultado esperado:
+#### Resultado esperado:
 ```
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU"
@@ -78,18 +78,8 @@ Resultado esperado:
 
 > token de ejemplo generado en jwt.io
 
-### POST /login (credenciales incorrectas)
-- Headers: 
-    - Content-Type: application/json
-- Body:
-    ```
-    {
-        "username": "adminn",
-        "password": "secrett"
-    }
-    ```
-
-Resultado esperado:
+#### Casos de error:
+- Username y/o password incorrectas:
 ```
 {
   "message": "Invalid credentials."
@@ -97,14 +87,14 @@ Resultado esperado:
 ```
 
 
-### GET /weather/city/:city (credenciales correctas)
+### GET /weather/current/:city
 - Headers: 
     - Content-Type: application/json
     - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
 
 > token de ejemplo generado en jwt.io
 
-Resultado esperado:
+#### Resultado esperado:
 ```
 {
     "coord": {
@@ -153,21 +143,56 @@ Resultado esperado:
 }
 ```
 
-### GET /weather/city/:city (city mal escrita)
-- Headers: 
-    - Content-Type: application/json
-    - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
-
-> token de ejemplo generado en jwt.io
-
-Resultado esperado:
+#### Casos de error:
+- Ciudad mal escrita o incompleta:
 ```
 {
     "message": "City 'BuenosAir' not found."
 }
 ```
 
-### Rutas protegidas
+### GET /weather/forecast/:city
+- Headers: 
+    - Content-Type: application/json
+    - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
+
+> token de ejemplo generado en jwt.io
+
+#### Resultado esperado:
+```
+{
+    "cod": "200",
+    "message": 0,
+    "cnt": 40,
+    "list":
+
+    ...
+
+    "city": {
+        "id": 3433955,
+        "name": "Buenos Aires F.D.",
+        "coord": {
+            "lat": -34.6,
+            "lon": -58.45
+        },
+        "country": "AR",
+        "population": 0,
+        "timezone": -10800,
+        "sunrise": 1759656271,
+        "sunset": 1759701572
+    }
+}
+```
+
+#### Casos de error:
+- Ciudad mal escrita o incompleta:
+```
+{
+    "message": "City 'BuenosAir' not found."
+}
+```
+
+## Rutas protegidas
 Al utilizar JWT, junto a un middleware, protegemos aquellas rutas que requieran autenticación.
 Asi se ven los mensajes recibidos en distintos casos:
 - Fallo al intentar obtener el token del header:
@@ -177,24 +202,24 @@ Asi se ven los mensajes recibidos en distintos casos:
 }
 ```
 
-- token expirado:
+- Token expirado:
 ```
 {
     "message": "Please, log in again."
 }
 ```
 
-- error de jsonwebtoken:
+- Error de jsonwebtoken:
 ```
 {
     "message": "Log in failed."
 }
 ```
 
-### Manejo de endpoints inexistentes
+## Manejo de endpoints inexistentes
 Para express, las respuestas 404 no son resultados de errores, sino la ausencia de trabajo por hacer, por lo que recomienda crear un middleware que capture los intentos de acceder a aquellos endpoints inexistentes en nuestra API.
 
-La respuesta ante tales situaciones se ven asi:
+La respuesta ante tales situaciones se ve algo asi:
 ```
 {
     "message": "Endpoint '/fakeendpoint' not found."

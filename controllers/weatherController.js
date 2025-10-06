@@ -1,6 +1,6 @@
 const openWeatherService = require("../services/openWeatherService");
 
-const getWeatherByCity = async (req, res, next) => {
+const getCurrentWeatherByCity = async (req, res, next) => {
   try {
     const { city } = req.params;
 
@@ -12,6 +12,19 @@ const getWeatherByCity = async (req, res, next) => {
   }
 };
 
+const getWeatherForecastByCity = async (req, res, next) => {
+  try {
+    const { city } = req.params;
+
+    const forecast = await openWeatherService.getWeatherForecastByCity(city);
+
+    res.status(200).json(forecast);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
-  getWeatherByCity,
+  getCurrentWeatherByCity,
+  getWeatherForecastByCity,
 };
