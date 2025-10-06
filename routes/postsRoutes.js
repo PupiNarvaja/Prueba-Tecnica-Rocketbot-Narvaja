@@ -6,6 +6,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 router.use(authMiddleware);
 
 router.route("/")
-  .get(postController.getAllPosts);
+  .get(postController.getAllPosts)
+  .post(postController.createPost);
 
 module.exports = router;

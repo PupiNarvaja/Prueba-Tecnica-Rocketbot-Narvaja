@@ -17,6 +17,17 @@ const getAllPosts = async () => {
   }
 };
 
+const createPost = async () => {
+  try {
+    const response = await axios.post(`${JSONPlaceholder_BASE_URL}/posts`);
+
+    return response.data;
+  } catch (error) {
+    throw new ServiceUnavailableError();
+  }
+};
+
 module.exports = {
   getAllPosts,
+  createPost,
 };
