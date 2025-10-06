@@ -17,6 +17,16 @@ const getAllPosts = async () => {
   }
 };
 
+const getPostsByUserId = async (userId) => {
+  try {
+    const response = await axios.get(`${JSONPlaceholder_BASE_URL}/posts?userId=${userId}`);
+
+    return response.data;
+  } catch (error) {
+    throw new ServiceUnavailableError();
+  }
+};
+
 const createPost = async (userId, body) => {
   try {
     const postInfo = {
@@ -34,5 +44,6 @@ const createPost = async (userId, body) => {
 
 module.exports = {
   getAllPosts,
+  getPostsByUserId,
   createPost,
 };

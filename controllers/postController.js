@@ -10,6 +10,18 @@ const getAllPosts = async (req, res, next) => {
   }
 };
 
+const getPostsByUserId = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    const post = await postService.getPostsByUserId(userId);
+
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createPost = async (req, res, next) => {
   try {
     const { userId, body } = req.body;
@@ -24,5 +36,6 @@ const createPost = async (req, res, next) => {
 
 module.exports = {
   getAllPosts,
+  getPostsByUserId,
   createPost,
 };

@@ -260,6 +260,43 @@ npm start
 }
 ```
 
+
+### GET /posts/:userId
+- Headers: 
+    - Content-Type: application/json
+    - Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTc1OTc2NDQ1N30.b6Tq2PmyBRXcpy-NUlROhaGJOLfXa1mhvsG9n5QvJYU".
+
+> **Importante:** token de ejemplo generado en jwt.io
+
+#### Resultado esperado:
+```
+[
+    {
+        "userId": 1,
+        "id": 1,
+        "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+        "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    },
+    {
+        "userId": 1,
+        "id": 2,
+        "title": "qui est esse",
+        "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+    },
+
+    ...
+]
+```
+
+#### Casos de error:
+- Servicio no disponible:
+```
+{
+    "message": "This service is currently unavailable."
+}
+```
+
+
 ## Rutas protegidas
 Al utilizar JWT, junto a un middleware, protegemos aquellas rutas que requieran autenticación.
 Asi se ven los mensajes recibidos en distintos casos:
